@@ -1,0 +1,29 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery .contenedor{
+    padding: 5px;
+    background-color: lightblue; 
+    border-radius: 8px;
+    display: flex;
+    justify-content: center; /* Eje horizontal */
+    align-items: center;     /* Eje vertical */
+}
+/*
+#visor{
+    background-color: aqua;
+    height: 600px;
+    width: 800px;
+};
+*/
+
+/* Aplica a las imágenes */
+.gallery img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 8px;
+}
