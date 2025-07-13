@@ -1,2 +1,3 @@
 .git
-imagenes
+frontend/imagenes
+backend/node_modules

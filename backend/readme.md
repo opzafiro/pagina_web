@@ -24,7 +24,11 @@
     # En el directorio donde va a estar el servidor
     npm init --yes
 ```
-### instalar servidor
+
+
+### instalar dependencias
 ```bash
-    npm i express
+    npm i express      #servidor html
+    npm i socket.io    #sevidor websocket
+    npm i chokidar     # perro guardian
 ```
