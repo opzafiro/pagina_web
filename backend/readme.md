@@ -30,5 +30,5 @@
 ```bash
     npm i express      #servidor html
     npm i socket.io    #sevidor websocket
-    npm i chokidar     # perro guardian
+    npm i chokidar     # perro guardia
 ```

@@ -7,14 +7,24 @@
     <link rel="stylesheet" href="estilo.css">
     <script src="openseadragon-bin-5.0.1/openseadragon.min.js"></script>
 </head>
-<body>
+<body id="body">
+    <div id="precarga" >
+        <div id="visor1" class="pre"></div>
+        <div id="visor2" class="pre"></div>
+        <div id="visor3" class="pre"></div>
+        <div id="visor4" class="pre"></div>
+        <div id="visor5" class="pre"></div>
+        <div id="visor6" class="pre"></div>
+        <div id="visor7" class="pre"></div>
+        <div id="visor8" class="pre"></div>
+        <div id="visor9" class="pre"></div>
+        <div id="visor10" class="pre"></div>
+    </div>
     <div class="gallery" id = 'galeria'>
-        <div class = 'contenedor'>
-            <img src="imagenes/miniaturas/imagen.jpg" >
-        </div>
+        
     </div>
     
-    <div id="visor" style="width: 800px; height: 600px;"></div>
+    <div id="visor"></div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
 </body>

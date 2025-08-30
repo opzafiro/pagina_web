@@ -1,29 +1,70 @@
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 
-.gallery .contenedor{
-    padding: 5px;
-    background-color: lightblue; 
-    border-radius: 8px;
-    display: flex;
-    justify-content: center; /* Eje horizontal */
-    align-items: center;     /* Eje vertical */
+/* Visor a la izquierda */
+#visor {
+  width: 65%;
+  height: 100%;
+  background-color: black;
+}
+#precarga{
+  display: flex;
+  flex-wrap: wrap;
+  width: 10%;
+  height: 100%;
+  background-color: blue;
+}
+.pre{
+
+  width: 50%;
+  height: auto;
+  background-color: orange;
+}
+/* Galería a la derecha */
+.gallery {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 1px;
+  background-color: #f0f0f0;
+  overflow-y: auto;
+}
+
+.gallery .contenedor {
+  justify-content: center;
+  align-items: center;
+  /*height: 100px;
+  width: auto*/
+  padding: 0px;
+  margin: 0px;
+  background-color: lightblue;
+  border-radius: 8px;
+}
+
+/* Estilo de imagen */
+.gallery img {
+  /*height: 90px;*/
+  /*width: auto;*/
+  margin: 3px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  display: block;
 }
 /*
-#visor{
-    background-color: aqua;
-    height: 600px;
-    width: 800px;
-};
+#precarga{
+  display: none;
+}
 */
-
-/* Aplica a las imágenes */
-.gallery img {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-    border-radius: 8px;
+.gallery img:hover {
+  transform: scale(1.02);
 }
