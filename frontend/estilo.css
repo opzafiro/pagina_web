@@ -10,7 +10,7 @@ html, body {
 
 /* Visor a la izquierda */
 #visor {
-  width: 65%;
+  width: 75%;
   height: 100%;
   background-color: black;
 }
@@ -42,8 +42,8 @@ html, body {
 .gallery .contenedor {
   justify-content: center;
   align-items: center;
-  /*height: 100px;
-  width: auto*/
+  width: 33%;
+  height: auto;
   padding: 0px;
   margin: 0px;
   background-color: lightblue;
@@ -52,19 +52,19 @@ html, body {
 
 /* Estilo de imagen */
 .gallery img {
-  /*height: 90px;*/
-  /*width: auto;*/
+  height: auto;
+  width: 95%;
   margin: 3px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s;
   display: block;
 }
-/*
+
 #precarga{
   display: none;
 }
-*/
+
 .gallery img:hover {
   transform: scale(1.02);
 }

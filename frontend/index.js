@@ -39,7 +39,7 @@ class Imagen {
             indice_actual = this.indice
         })
         contenedor.appendChild(this.etiqueta_imagen)
-        galeria.appendChild(contenedor)
+        galeria.prepend(contenedor)
     }
     cargar_visor(){
         const dzi_name = this.name.replace(/\.[^\.]+$/i, '.dzi')
@@ -81,18 +81,7 @@ function cargar_imagen(nombre){
         key_visor_actual=0
     }
 }
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen2.jpg')
-cargar_imagen('imagen1.jpg')
-cargar_imagen('imagen3.jpg')
+
 
 
 //----------------------------------------------------------
@@ -105,6 +94,17 @@ socket.on('precarga', (miniaturas) => {
         imagenes.push(im)
         im.cargar_miniatura()
     }
+    let fin = miniaturas.length-1
+    let inicio = fin -9
+    if(inicio < 0){
+        inicio= 0
+    }
+    console.log(miniaturas)
+    while (inicio<= fin) {
+        console.log(inicio)
+        cargar_imagen(miniaturas[inicio])
+        inicio++
+    }
 })
 
 
@@ -116,21 +116,34 @@ socket.on('nueva-imagen', (filename) => {
     ultimo_indice= ultimo_indice +1
     imagen.cargar_miniatura()
     imagenes.push(imagen)
+    console.log(filename)
     cargar_imagen(filename) //precarga en los 10 visores
     });
 
 
 document.addEventListener('keydown', (event)=>{
         switch (event.key) {
-        case "ArrowLeft":
+        case "ArrowRight":
             if(indice_actual>0){
                 indice_actual= indice_actual-1;
                 imagenes[indice_actual].seleccionar();
             }
             break;
-        case "ArrowRight":
+        case "ArrowLeft":
             if(indice_actual< ultimo_indice){
                 indice_actual= indice_actual+1;
+                imagenes[indice_actual].seleccionar();
+            }
+            break;
+        case "ArrowUp":
+            if(indice_actual+3<= ultimo_indice){
+                indice_actual= indice_actual+3;
+                imagenes[indice_actual].seleccionar();
+            }
+            break;
+        case "ArrowDown":
+            if(indice_actual-3>=0){
+                indice_actual= indice_actual-3;
                 imagenes[indice_actual].seleccionar();
             }
             break;

@@ -1,3 +1,15 @@
+# Backend
+
+## funcionamiento
+Tenemos dos servidores:
+- servidor yolo
+- servidor galeria
+
+### servidor yolo
+recibe imagen y responde con las coordenadas predichas con el modelo yolo .
+
+## Dependencias
+
 ### instalar node.js
 
 ``` bash
@@ -30,5 +42,14 @@
 ```bash
     npm i express      #servidor html
     npm i socket.io    #sevidor websocket
-    npm i chokidar     # perro guardia
+    npm i chokidar     # perro guardian
+    npm i multer       # descarga imagen
+```
+### crear dzi
+```bash
+    sudo apt update
+    sudo apt install libvips-tools -y  #instalar vips
+    
+    vips dzsave pu.jpg pu_dzi   #crea archivo .dzi y las carpeta
+
 ```
