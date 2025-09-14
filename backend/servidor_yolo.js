@@ -21,7 +21,7 @@ const upload = multer({ storage: storage });
 //app.use(express.json())
 
 app.post('/',upload.single("imagen") ,(req,res) =>{
-    const python = spawn('python', ['backend/yolo.py', 'Hola Node']);
+    const python = spawn('python3', ['backend/yolo.py', 'Hola Node']);
     python.stdout.on('data', (data) => {
         const coordenadas = data.toString()
         console.log(`Salida de Python: ${coordenadas}`);
