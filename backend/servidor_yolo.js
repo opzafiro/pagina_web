@@ -32,4 +32,4 @@ app.post('/',upload.single("imagen") ,(req,res) =>{
 
 
 
-app.listen(2020, ()=>{console.log('servidor encendido')})
+app.listen(2020, ()=>{console.log('servidor encendido localhost:2020')})

@@ -14,14 +14,11 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server)
 
-
 // Servir archivos estáticos (html, css, js, imágenes...)
-const miniaturas_dir = "/home/bicycle/Desktop/pagina_web/frontend/imagenes/miniaturas";
-const originales_dir = '/home/bicycle/Desktop/pagina_web/frontend/imagenes/originales'
-const dzi_dir = '/home/bicycle/Desktop/pagina_web/frontend/imagenes/dzi'
-
-
-const sitioPath = '/home/bicycle/Desktop/pagina_web/frontend';
+const miniaturas_dir = path.join(__dirname,'..',"/frontend/imagenes/miniaturas")
+const originales_dir = path.join(__dirname,'..','frontend/imagenes/originales')
+const dzi_dir = path.join(__dirname,'..','frontend/imagenes/dzi')
+const sitioPath = path.join(__dirname,'..','frontend')
 //======Recibir imagen==============================
 
 const storage = multer.diskStorage({
