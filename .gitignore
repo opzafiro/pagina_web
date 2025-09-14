@@ -1,4 +1,9 @@
 .git
-frontend/imagenes
+frontend/imagenes/dzi
+frontend/imagenes/miniaturas
+frontend/imagenes/originales
+frontend/MagickSlicer
 backend/node_modules
+backend/prueba.js
+backend/miniaturas.py
 ven
