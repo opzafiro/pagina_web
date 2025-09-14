@@ -1,1 +1,1 @@
-io.on('connection', 
+precarga
