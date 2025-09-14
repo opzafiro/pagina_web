@@ -3,6 +3,7 @@ frontend/imagenes/dzi
 frontend/imagenes/miniaturas
 frontend/imagenes/originales
 frontend/MagickSlicer
+frontend/prueba.html
 backend/node_modules
 backend/prueba.js
 backend/miniaturas.py
