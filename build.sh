@@ -1,11 +1,11 @@
 #!/bin/bash
 
-mkdir -p /frontend/imagenes/dzi /frontend/imagenes/miniaturas /frontend/imagenes/originales
+mkdir -p frontend/imagenes/dzi frontend/imagenes/miniaturas frontend/imagenes/originales
 
 #Node------------------------------------------------
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
-nvm install 22
+nvm install 22.17.0
 node -v # Should print "v22.17.0".
 nvm current # Should print "v22.17.0".
     # Verify npm version:
@@ -16,6 +16,6 @@ npm i
 
 # paquetes para hacer los dzi--------------------------------
 sudo apt update
-sudo apt install libvips libjpeg62-turbo
+sudo apt install libvips-tools libjpeg62-turbo
 
 
