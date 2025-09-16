@@ -49,7 +49,7 @@ recibe imagen y responde con las coordenadas predichas con el modelo yolo .
 ```bash
     sudo apt update
     sudo apt install libvips-tools -y  #instalar vips
-    
+    sudo apt install libvips-tools libjpeg-dev libpng-dev -y #verificar
     vips dzsave pu.jpg pu_dzi   #crea archivo .dzi y las carpeta
 
 ```
