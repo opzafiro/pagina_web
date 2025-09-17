@@ -3,6 +3,8 @@ const { spawn } = require('child_process');
 const multer = require("multer"); //deacargar imagen
 const path = require('path');
 
+const port = 2020;
+
 const app = express()
 const downloadDir = path.join(__dirname,'..','frontend/imagenes/miniaturas' );
 
@@ -32,4 +34,5 @@ app.post('/',upload.single("imagen") ,(req,res) =>{
 
 
 
-app.listen(2020, ()=>{console.log('servidor encendido localhost:2020')})
+app.listen(port, ()=>{
+    console.log(`servidor_yolo encendido localhost:${port}`)})
