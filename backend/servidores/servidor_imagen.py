@@ -26,8 +26,8 @@ def crea_miniatura_dzi(path_imagen):
     dzi = Popen(['vips', 'dzsave', path_imagen, dzi_path])
     dzi.wait()
 
-    miniatura_path = path.join('frontend', 'imagenes', 'miniaturas', imagen_name)
-    miniatura = Popen(['vipsthumbnail', '--size', '416', '-o', miniatura_path, path_imagen])
+    miniatura_path = path.join('.', '..', 'miniaturas')
+    miniatura = Popen(['vipsthumbnail', '--size', '200', '-o', f'{miniatura_path}/%s.jpg', path_imagen])
     miniatura.wait()
 
 def hilo_cliente(conn):
