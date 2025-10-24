@@ -2,6 +2,7 @@
 frontend/imagenes/dzi
 frontend/imagenes/miniaturas
 frontend/imagenes/originales
+frontend/audios
 frontend/MagickSlicer
 frontend/prueba.html
 backend/node_modules

@@ -5,6 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const { spawn } = require('child_process');
 const multer = require("multer"); //deacargar imagen
+const chokidar = require('chokidar')
 
 const port = 3030;
 const downloadDir = path.join(__dirname,'..','frontend/imagenes/originales' );
@@ -12,6 +13,20 @@ const downloadDir = path.join(__dirname,'..','frontend/imagenes/originales' );
 const app = express()
 const server = http.createServer(app)
 const io = new Server(server)
+
+const audio_dir = path.join(__dirname,'..','frontend','audios')
+const watcher = chokidar.watch(audio_dir, {recursive: false, ignoreInitial: true})
+
+// servir audios
+watcher.on('add',(audio_path) =>{
+    let audio_name = path.basename(audio_path)
+    if (audio_name == 'live.m3u8'){
+      carpeta_path = path.dirname(audio_path)
+      carpeta_name = path.basename(carpeta_path)
+      console.log(`audio creado: ${audio_path}`)
+      io.emit('nuevo-audio', carpeta_name)
+    }
+  })
 
 // Servir archivos estáticos (html, css, js, imágenes...)
 const miniaturas_dir = path.join(__dirname,'..',"/frontend/imagenes/miniaturas")
@@ -60,8 +75,14 @@ app.use(express.static(sitioPath));
 io.on('connection', (socket) => {
   console.log('Cliente conectado');
   const miniaturas = fs.readdirSync(miniaturas_dir).sort() // lista de los nombres de las miniaturas
+  const audios = fs.readdirSync(audio_dir).sort()
+  console.log('miniaturas')
   console.log(miniaturas)
+  console.log('audios')
+  console.log(audios)
+
   socket.emit('precarga', miniaturas)
+  socket.emit('precarga-audios', audios)
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
   });

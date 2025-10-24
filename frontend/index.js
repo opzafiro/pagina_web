@@ -17,6 +17,8 @@ let visores = [] //10 visores para precargar las 10 primeras imagenes
 let key_visor_actual=0 // numero de visor donde se va a precargar la nueva imagen
 let contenedor_anterior = null
 
+const notificacion = new Audio('notificacion.mp3');
+
 class Imagen {
 
     constructor(name) {
@@ -63,6 +65,46 @@ class Imagen {
         contenedor_anterior = this.etiqueta_imagen.parentElement
     } 
 }
+
+audios_lista = []
+audio_index = -1
+
+class Sound{
+    constructor(name){
+        this.name = name
+        this.reproductor = document.createElement('audio')
+        this.index= -1
+    }
+    
+    cargar_reproductor(){
+        this.reproductor.style.backgroundColor = 'orange'
+        let albun = document.getElementById('audios')
+        this.reproductor.addEventListener('play', ()=>{
+            this.reproductor.style.backgroundColor = 'gray'
+            this.seleccionar()
+        })
+        this.reproductor.controls = true;
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(`audios/${this.name}/live.m3u8`);
+            hls.attachMedia(this.reproductor);
+        } else {
+            //video.src = 'output.m3u8';
+            this.reproductor.src = `audios/${this.name}/live.m3u8`
+        }
+
+        albun.prepend(this.reproductor)
+    }
+
+    seleccionar(){
+        for ( key in audios_lista){
+            if(this.index == audios_lista[key].index){
+                continue
+            }
+            (audios_lista[key]).reproductor.pause()
+        }
+    }
+}
 //---------------------------------------------------------------------------------
 
 for(let i=1; i<= 10; i++){
@@ -107,6 +149,42 @@ socket.on('precarga', (miniaturas) => {
     }
 })
 
+socket.on('precarga-audios', (audios)=> {
+    console.log('audios:')
+    console.log(audios)
+    for (key in audios){
+        audio_name = audios[key]
+        audio = new Sound(audio_name)
+        audio.cargar_reproductor()
+        audios_lista.push(audio)
+        audio_index = audio_index + 1
+        audio.index = audio_index
+    }
+    /*
+    for(key in audios){
+        let albun = document.getElementById('audios')
+        let reproductor = document.createElement('audio')
+        reproductor.style.backgroundColor = 'orange'
+        
+
+        reproductor.addEventListener('play', ()=>{
+            reproductor.style.backgroundColor = 'gray'
+        })
+        reproductor.controls = true;
+        let audio_name = audios[key]
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(`audios/${audio_name}/live.m3u8`);
+            hls.attachMedia(reproductor);
+        } else {
+            //video.src = 'output.m3u8';
+            reproductor.src = `audios/${audio_name}/live.m3u8`
+        }
+    albun.prepend(reproductor)
+    }
+    */
+})
+
 
 
 socket.on('nueva-imagen', (filename) => {
@@ -120,6 +198,17 @@ socket.on('nueva-imagen', (filename) => {
     cargar_imagen(filename) //precarga en los 10 visores
     });
 
+socket.on('nuevo-audio', (audio_name)=>{
+    console.log('nuevo audio: ', audio_name)
+    let audio = new Sound(audio_name)
+    audio_index = audio_index + 1
+    audio.index = audio_index
+    audios_lista.push(audio)
+    audio.cargar_reproductor()
+    notificacion.play()
+
+
+})
 
 document.addEventListener('keydown', (event)=>{
         switch (event.key) {

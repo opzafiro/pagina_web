@@ -1,0 +1,6 @@
+{
+  "ip_servidor": "192.168.0.24",
+  "port_aplicacion": 2121,
+  "port_imagen": 3030,
+  "port_audio": 5050
+}

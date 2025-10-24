@@ -2,10 +2,18 @@ from socket import socket, gethostname
 from threading import Thread
 from subprocess import Popen, PIPE
 from os import mkdir, path
+import json
 
+with open('config.json', "r", encoding="utf-8") as f:
+        config = json.load(f)
 
-IP= '192.168.0.24'
-PORT= 5059
+IP= config['ip_servidor']
+PORT= config['port_audio']
+
+print(type(IP), IP)
+print(type(PORT), PORT)
+print(type(config))
+
 
 def hilo_cliente(client_socket):
 
@@ -32,12 +40,14 @@ def hilo_cliente(client_socket):
 
         ffmpeg = Popen([
             'ffmpeg',
-            '-f', 'mp3', '-i', '-',
-            '-c:a', 'aac', '-b:a', '16k',
-            '-f', 'hls',
-            '-hls_time', '10',
-            '-hls_list_size', '0',
-            '-hls_flags', 'append_list',
+            '-f', 'mp3', 
+            '-i', '-',
+            '-c:a', 'aac', 
+            '-b:a', '16k',  #Usa un bitrate de 16 kbps
+            '-f', 'hls',    #El formato de salida será HLS
+            '-hls_time', '4', #Cada segmento de salida
+            '-hls_list_size', '0', #Mantiene toda la lista de segmentos en el archivo .m3u8
+            '-hls_flags', 'append_list',#Hace que FFmpeg no borre la lista anterior
             ruta_m3u8   # ✅ salida final
         ], stdin=PIPE)
 
@@ -52,7 +62,6 @@ def hilo_cliente(client_socket):
 
 with socket() as server_socket:
     server_socket.bind((IP,PORT))
-
     server_socket.listen()
     print('servidor activo ip=', IP,'puerto', PORT)
 
