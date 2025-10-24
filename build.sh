@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p frontend/imagenes/dzi frontend/imagenes/miniaturas frontend/imagenes/originales
-
+mkdir -p frontend/audios
 #Node------------------------------------------------
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"

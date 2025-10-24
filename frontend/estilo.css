@@ -27,15 +27,42 @@ html, body {
   background-color: orange;
 }
 /* Galería a la derecha */
-.gallery {
+.contenedor_galeria_albun{
   width: 25%;
-  height: 100;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+.gallery {
+  width: 100%; 
+  height: 70%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 1px;
   background-color: #f0f0f0;
   overflow-y: auto;
+  align-content: flex-start;
+
+}
+.albun{
+  width: 100%; 
+  height: 30%;
+  background-color: gray;
+  /*display: flex;*/
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.albun audio {
+    /* Ocupa todo el ancho disponible */
+    width: 95%; 
+    /* Margen entre los reproductores */
+    margin: 5px auto; 
+    /* Asegura que no se contraigan */
+    flex-shrink: 0; 
+    /*background-color: blue;*/
 }
 
 .gallery .contenedor {
