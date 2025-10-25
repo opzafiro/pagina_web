@@ -8,7 +8,7 @@ despues crea el dzi y la miniatura
 '''
 from socket import socket
 import json
-from os import path
+from os import path, rename
 from threading import Thread
 from subprocess import Popen
 
@@ -23,12 +23,15 @@ def crea_miniatura_dzi(path_imagen):
     imagen_name = path.basename(path_imagen)
 
     dzi_path= path.join('frontend', 'imagenes', 'dzi', imagen_name)
-    dzi = Popen(['vips', 'dzsave', path_imagen, dzi_path])
+    dzi = Popen(['vips', 'dzsave', path_imagen, dzi_path.replace('.jpg', '')])
     dzi.wait()
 
-    miniatura_path = path.join('.', '..', 'miniaturas')
-    miniatura = Popen(['vipsthumbnail', '--size', '200', '-o', f'{miniatura_path}/%s.jpg', path_imagen])
+    miniatura_path = path.join('.', '..', 'miniaturas') #relativo al archivo de entrada de vipsthumbnail
+    miniatura = Popen(['vipsthumbnail', '--size', '200', '-o', f'{miniatura_path}/tn_%s.jpg', path_imagen])
     miniatura.wait()
+    path_inicial = path.join('frontend', 'imagenes', 'miniaturas', 'tn_'+imagen_name)
+    path_final = path.join('frontend', 'imagenes', 'miniaturas', imagen_name)
+    rename(path_inicial,path_final)
 
 def hilo_cliente(conn):
     with conn:
