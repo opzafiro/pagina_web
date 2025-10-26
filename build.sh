@@ -17,5 +17,6 @@ npm i
 # paquetes para hacer los dzi--------------------------------
 sudo apt update
 sudo apt install libvips-tools libjpeg62-turbo
+sudo apt install ffmpeg
 
 
