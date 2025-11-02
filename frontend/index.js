@@ -94,6 +94,7 @@ class Sound{
         }
 
         albun.prepend(this.reproductor)
+        this.reproductor.play()
     }
 
     seleccionar(){
